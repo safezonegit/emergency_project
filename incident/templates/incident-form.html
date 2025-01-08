@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Form</title>
+</head>
+<body>
+    <h1>Report Incident</h1>
+    <form id="incident-form" method="POST" action="/save-incident/">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!-- Hidden fields for latitude and longitude -->
+        <input type="hidden" id="latitude" name="latitude">
+        <input type="hidden" id="longitude" name="longitude">
+        
+        <button type="button" id="get-location">Get My Location</button>
+        <button type="submit">Submit</button>
+    </form>
+    <script src="{% static 'js/location.js' %}"></script>
+    
+
+    <script src="{% static 'js/location.js' %}"></script>
+</body>
+</html>
