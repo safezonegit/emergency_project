@@ -4,22 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incident Form</title>
+    <!-- Load the static template tag -->
+    {% load static %}
 </head>
 <body>
     <h1>Report Incident</h1>
     <form id="incident-form" method="POST" action="/save-incident/">
         {% csrf_token %}
         {{ form.as_p }}
+        
         <!-- Hidden fields for latitude and longitude -->
         <input type="hidden" id="latitude" name="latitude">
         <input type="hidden" id="longitude" name="longitude">
         
+        <!-- Button to get the user's location -->
         <button type="button" id="get-location">Get My Location</button>
+        <div id="loading-spinner" style="display:none;">Fetching your location...</div> <!-- Feedback for users -->
         <button type="submit">Submit</button>
+        
     </form>
-    <script src="{% static 'js/location.js' %}"></script>
-    
 
+    <!-- Reference the JavaScript file correctly -->
     <script src="{% static 'js/location.js' %}"></script>
+    <script>
+        // Show a spinner when the location fetching starts
+        document.getElementById('get-location').addEventListener('click', function () {
+            document.getElementById('loading-spinner').style.display = 'block';
+        });
+
+        // Hide the spinner if the form is reset
+        document.getElementById('incident-form').addEventListener('reset', function () {
+            document.getElementById('loading-spinner').style.display = 'none';
+        });
+    </script>
+
 </body>
 </html>

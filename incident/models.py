@@ -1,7 +1,4 @@
 from django.db import models
-from django.contrib.gis.db import models
-from django.contrib.gis.geos import Point
-
 from customauth.models import CustomUserModel
 
 
@@ -16,7 +13,7 @@ class Incident(models.Model):
     incident_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     user = models.ForeignKey(CustomUserModel,on_delete=models.CASCADE)
     user_input_location = models.CharField(max_length=100)
-    live_location = models.PointField(geography=True,null=True,blank=True)
+    live_location = models.CharField(max_length= 200, null=True,blank=True)
     severity = models.CharField(
         max_length=20,
         choices=[('low', 'Low'), ('medium', 'Medium'), ('high', 'High'), ('critical', 'Critical')],

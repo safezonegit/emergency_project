@@ -22,7 +22,7 @@ document.getElementById('get-location').addEventListener('click', function (even
             },
             {
                 enableHighAccuracy: true,
-                timeout: 5000,
+                timeout: 10000,
                 maximumAge: 0
             }
         );

@@ -44,10 +44,10 @@ INSTALLED_APPS = [
     'customauth.apps.CustomauthConfig',
     'user.apps.UserConfig',
     'responder.apps.ResponderConfig',
-    'schoolinfo.apps.SchoolinfoConfig',
-    
+    'incident.apps.IncidentConfig',
     # 3rd Party Apps
     'decouple',
+    'celery',
 
 
 ]
@@ -139,3 +139,9 @@ AUTH_USER_MODEL = 'customauth.CustomUserModel'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+TWILIO_ACCOUNT_SID = config('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN')
+TWILIO_PHONE_NUMBER = +15672467720
+
+GOOGLE_MAPS_API_KEY = '6f47df580e4856de8f1a' # fake key, doesn't work
