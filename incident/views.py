@@ -1,20 +1,22 @@
 import googlemaps
 from .models import Incident
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import IncidentForm
-from .utils import is_within_university
+from .utils import is_within_university,geocode,reverse_geocode
 from .tasks import send_incident_notification
+import os
+from azure.core.exceptions import HttpResponseError
 from django.conf import settings
+from azure.core.credentials import AzureKeyCredential
+from azure.maps.search import MapsSearchClient
 
+subscription_key = settings.AZURE_MAPS_SUBSCRIPTION_KEY
 
-# Initialize Google Maps client with your API key -- THIS KEYCAN BE CHANGED TO SUIT AZURE MAPS||MAPBOX etc
-gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
 
 def save_incident(request):
     if request.method == "POST":
         form = IncidentForm(request.POST)
         if form.is_valid():
-            # Get user input and live location data from form
             user = request.user
             latitude = request.POST.get('latitude')
             longitude = request.POST.get('longitude')
@@ -24,51 +26,49 @@ def save_incident(request):
 
             # Validate live location (from geolocation)
             if latitude and longitude:
-                latitude = float(latitude)
-                longitude = float(longitude)
+                try:
+                    latitude = float(latitude)
+                    longitude = float(longitude)
 
-                # Reverse geocode the live location to get its description
-                reverse_geocode_result = gmaps.reverse_geocode((latitude, longitude))
-                if reverse_geocode_result:
-                    live_location = reverse_geocode_result[0]['formatted_address']
+                    # Reverse geocode the live location
+                    live_location = reverse_geocode(latitude, longitude)
+                    print(live_location)
 
-                # Check if the live location is within the University of Ibadan boundary
-                if not is_within_university(latitude, longitude):
-                    form.add_error(None, "Live location is outside the University of Ibadan boundary.")
-                    return render(request, 'incident_form.html', {'form': form})
+                    if not is_within_university(latitude, longitude):
+                        form.add_error(None, "Live location is outside the University of Ibadan boundary.")
+                        return render(request, 'incident-form.html', {'form': form})
+                except ValueError:
+                    form.add_error(None, "Invalid location coordinates provided.")
+                    return render(request, 'incident-form.html', {'form': form})
 
-            # Validate user input location (geocoding user input)
+            # Validate user input location
             if user_input_location:
                 try:
-                    # Geocode user input location to get latitude and longitude
-                    geocode_result = gmaps.geocode(user_input_location)
-                    if geocode_result:
-                        input_lat = geocode_result[0]['geometry']['location']['lat']
-                        input_lon = geocode_result[0]['geometry']['location']['lng']
+                    input_lat = geocode(user_input_location, "latitude")
+                    input_lon = geocode(user_input_location, "longitude")
 
-                        # Check if the user input location is within the University of Ibadan boundary
-                        if not is_within_university(input_lat, input_lon):
-                            form.add_error('user_input_location', "The entered location is outside the University of Ibadan boundary.")
-                            return render(request, 'incident_form.html', {'form': form})
-                    else:
+                    if input_lat is None or input_lon is None:
                         form.add_error('user_input_location', "Unable to geocode the entered location.")
-                        return render(request, 'incident_form.html', {'form': form})
+                        return render(request, 'incident-form.html', {'form': form})
+
+                    if not is_within_university(input_lat, input_lon):
+                        form.add_error('user_input_location', "The entered location is outside the University of Ibadan boundary.")
+                        return render(request, 'incident-form.html', {'form': form})
 
                 except Exception as e:
-                    form.add_error('user_input_location', f"Error with Google Maps API: {e}")
-                    return render(request, 'incident_form.html', {'form': form})
+                    form.add_error('user_input_location', f"Error with location lookup: {e}")
+                    return render(request, 'incident-form.html', {'form': form})
 
-            # If both locations are valid, save the incident
+            # Save incident if valid
             incident = form.save(commit=False)
             incident.user = user
-            incident.live_location = live_location  # Set live_location to the formatted address from reverse geocoding
+            incident.live_location = live_location
             incident.save()
 
-            # Send notification asynchronously (using Celery)
+            # Send notification asynchronously
             send_incident_notification.delay(incident.incident_id)
 
-            #Return the success response with the form
-            return render(request, 'incident-form.html', {'form': form})
+            return redirect(request, 'index.html')
 
     else:
         form = IncidentForm()

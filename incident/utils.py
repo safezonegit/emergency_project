@@ -1,31 +1,77 @@
-import googlemaps
+import os
+from azure.core.exceptions import HttpResponseError
 from django.conf import settings
+from azure.core.credentials import AzureKeyCredential
+from azure.maps.search import MapsSearchClient
+from azure.maps.route import MapsRouteClient
 
-gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+subscription_key = settings.AZURE_MAPS_SUBSCRIPTION_KEY
 
-# Define University of Ibadan's center and radius
 UI_LAT = 7.4418
 UI_LON = 3.8964
-MAX_RADIUS = 1000  # Maximum radius in meters
+MAX_RADIUS = 1000  # Max radius in meters
 
 def is_within_university(lat, lon):
     """
-    Uses Google Maps API to check if a location is within the University of Ibadan boundary
-    by calculating distance from the center of the University of Ibadan.
+    Uses Azure Maps to check if a location is within the University of Ibadan boundary
+    by calculating distance from UI's center.
     """
+    route_client = MapsRouteClient(credential=AzureKeyCredential(subscription_key))
+
     try:
-        # Geocode the coordinates of the reported location
-        distance_result = gmaps.distance_matrix(
-            origins=(lat, lon),
-            destinations=(UI_LAT, UI_LON),
-            mode="driving"
+        result = route_client.get_route_matrix(
+            origins=[(lat, lon)],
+            destinations=[(UI_LAT, UI_LON)]
         )
-        
-        # Extract the distance in meters from the response
-        distance_in_meters = distance_result['rows'][0]['elements'][0]['distance']['value']
-        
-        # Check if the distance is within the specified radius
+
+        # Extract distance in meters
+        distance_in_meters = result.matrix[0][0].response.route_summary.length_in_meters
+
         return distance_in_meters <= MAX_RADIUS
+
     except Exception as e:
-        print(f"Error with Google Maps API: {e}")
+        print(f"Azure Maps Route API Error: {e}")
         return False
+
+
+
+def geocode(query, value):
+    """
+    Convert an address into latitude and longitude using Azure Maps.
+    """
+    maps_search_client = MapsSearchClient(credential=AzureKeyCredential(subscription_key))
+
+    try:
+        result = maps_search_client.search_address(query)
+        
+        if result.results:  # Check if we got results
+            position = result.results[0].position  # Get the first result's position
+            latitude, longitude = position.lat, position.lon
+            
+            return latitude if value == "latitude" else longitude if value == "longitude" else None
+        else:
+            return None
+
+    except Exception as e:
+        print(f"Azure Maps Geocoding Error: {e}")
+        return None
+
+
+
+def reverse_geocode(latitude, longitude):
+    """
+    Convert latitude and longitude into a human-readable address using Azure Maps.
+    """
+    maps_search_client = MapsSearchClient(credential=AzureKeyCredential(subscription_key))
+    
+    try:
+        result = maps_search_client.reverse_search_address(coordinate=(latitude, longitude))
+        
+        if result.addresses:  # Check if we got results
+            return result.addresses[0].address.freeform_address  # Get formatted address
+        
+        return "Address not found"
+
+    except Exception as e:
+        print(f"Azure Maps Reverse Geocoding Error: {e}")
+        return None

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -129,6 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -144,4 +148,5 @@ TWILIO_ACCOUNT_SID = config('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = +15672467720
 
-GOOGLE_MAPS_API_KEY = '6f47df580e4856de8f1a' # fake key, doesn't work
+AZURE_MAPS_SUBSCRIPTION_KEY = "6aWcN4MvjxP15u734n22nHPKqx57PjQ0KyWppJkMn9eiOoZvMkx3JQQJ99BAACYeBjFrTCE9AAAgAZMP4Nmb"
+SITE_ID=1

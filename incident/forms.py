@@ -2,13 +2,10 @@ from django import forms
 from .models import Incident
 
 class IncidentForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput, label='Confirm Password')
-
     class Meta:
         model = Incident
         fields = '__all__'  # Include all fields
-        exclude = ['incident_id', 'live_location', 'user', 'location']  # Exclude specific fields
+        exclude = ['incident_id', 'live_location', 'user', 'location','incident_date','date_reported']  # Exclude specific fields
 
     def save(self, user, latitude=None, longitude=None, commit=True):
         # Create or update an `Incident` instance

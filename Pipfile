@@ -14,8 +14,13 @@ googlemaps = "*"
 twilio = "*"
 celery = "*"
 redis = "*"
+azure-maps-search = "*"
+azure-maps-route = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.12"
+
+[pipenv]
+allow_prereleases = true
