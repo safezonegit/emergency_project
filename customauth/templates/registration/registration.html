@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -191,37 +191,41 @@
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          LOGIN
+          REGISTRATION
         </h2>
       </div>
       <div>
         <div class="row">
           <div class="col-md-7 mx-auto">
-            {% if messages %}
+              {% if messages %}
             <div class="alert alert-danger">
               {% for message in messages %}
                 <p>{{ message }}</p>
               {% endfor %}
             </div>
           {% endif %}
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                  <label for="username">Username</label>
-                  <input type="text" name="username" class="form-control" required>
-                </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" name="password" class="form-control" required>
-                </div>
-                <div class="btn-box">
-                  <button type="submit" class="custom-btn">Login</button>                
-                </div>
-              </form> 
-              <p class="login-link">
-                Can't Remember Your Passsword?
-                <a href="{% url 'login' %}" class="login-btn">Reset It</a>
-              </p>
+          <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="{{ form.email.id_for_label }}">Email</label>
+              {{ form.email }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.password.id_for_label }}">Password</label>
+              {{ form.password }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+              {{ form.password2 }}
+            </div>
+            <div class="btn-box">
+              <button type="submit" class="custom-btn">Register</button>
+            </div>
+          </form>
+          <p class="login-link">
+            Already have an account? 
+            <a href="{% url 'login' %}" class="login-btn">Login</a>
+          </p>
           </div>
         </div>
       </div>
@@ -250,17 +254,8 @@
   <script src="{% static 'js/bootstrap.js' %}"></script>
   <script src="{% static 'js/custom.js' %}"></script>
   <script src="{% static 'js/location.js' %}"></script>
-  <script>
-    // Show a spinner when fetching the location
-    document.getElementById('get-location').addEventListener('click', function () {
-      document.getElementById('loading-spinner').style.display = 'block';
-    });
-
-    // Hide the spinner if the form is reset
-    document.getElementById('incident-form').addEventListener('reset', function () {
-      document.getElementById('loading-spinner').style.display = 'none';
-    });
-  </script>
+  
 </body>
 
 </html>
+

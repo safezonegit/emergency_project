@@ -74,3 +74,6 @@ def save_incident(request):
         form = IncidentForm()
 
     return render(request, 'incident-form.html', {'form': form})
+
+def incident_report_success(request):
+    return render(request,'contact.html')
