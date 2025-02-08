@@ -30,7 +30,7 @@ class Incident(models.Model):
         default='other'
     )
     date_reported = models.DateTimeField(auto_now_add=True)  # When the incident was reported
-    incident_date = models.DateTimeField()  # When the incident occurred
+    incident_date = models.DateTimeField(null=True,blank=True)  # When the incident occurred
     resolved = models.BooleanField(default=False) 
     status = models.CharField(
         max_length=20,

@@ -106,8 +106,34 @@
     text-shadow: 0px 0px 8px rgba(255, 204, 0, 0.8); /* Soft glowing effect */
   }
   .form-group label, .form-group input {
-    font-weight: bold;
+    font-weight: bold;}
+
+    .sophisticated-button {
+  display: inline-block;
+  padding: 8px 20px;             /* Reduced padding for a smaller button */
+  font-size: 14px;               /* Smaller font size */
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, #d4af37, #aaa);
+  border: none;
+  border-radius: 30px;           /* Adjust border-radius if needed */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
+
+.sophisticated-button:hover {
+  background: linear-gradient(135deg, #ffcc00, #aaa,#000);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.sophisticated-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 
 </style>
 </head>
@@ -203,8 +229,20 @@
                 Report An Incident
               </h2>
             </div>
-            <form id="incident-form" method="POST">
+            <form id="incident-form" method="POST" action="{% url 'save_incident' %}">
               {% csrf_token %}
+              {% if form.non_field_errors or form.errors %}
+              <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+                {% for field in form %}
+                  {% for error in field.errors %}
+                    <p>{{ field.label }}: {{ error }}</p>
+                  {% endfor %}
+                {% endfor %}
+              </div>
+            {% endif %}
               <div class="form-group">
                 <label for="{{ form.user_input_location.id_for_label }}">User Location</label>
                 <input type="text" class="form-control" id="{{ form.user_input_location.id_for_label }}" name="{{ form.user_input_location.name }}" value="{{ form.user_input_location.value|default:'' }}" required />
@@ -228,17 +266,7 @@
                   <option value="security" {% if form.category.value == 'security' %}selected{% endif %}>Security</option>
                   <option value="other" {% if form.category.value == 'other' %}selected{% endif %}>Other</option>
               </select>
-          </div>
-            
-            <div class="form-group">
-                <label for="{{ form.category.id_for_label }}">Category</label>
-                <input type="text" class="form-control" id="{{ form.category.id_for_label }}" name="{{ form.category.name }}" value="{{ form.category.value|default:'' }}" required />
-            </div>
-            
-            <div class="form-group">
-                <label for="{{ form.incident_date.id_for_label }}">Incident Date</label>
-                <input type="date" class="form-control" id="{{ form.incident_date.id_for_label }}" name="{{ form.incident_date.name }}" value="{{ form.incident_date.value|default:'' }}" required />
-            </div>            
+          </div>   
             
               <!-- Hidden fields for latitude and longitude -->
               <input type="hidden" id="latitude" name="latitude">
@@ -246,10 +274,11 @@
             
               <!-- Button to get user's location -->
               <div class="btn-box">
-                <button type="button" id="get-location">Use My Live Location</button>
+                <button type="button" class="sophisticated-button" id="get-location">
+                  Use My Live Location
+                </button>
               </div>
-            
-              <div id="loading-spinner" style="display:none;">Fetching your location...</div>
+              <div id="loading-spinner" style="display:none;">Fetching your location...</div>              
               
               <div class="btn-box">
                 <button type="submit" class="custom-btn">Register</button>
@@ -380,6 +409,7 @@
   <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
   <script src="{% static 'js/bootstrap.js' %}"></script>
   <script src="{% static 'js/custom.js' %}"></script>
+  <script src="{% static 'js/location.js' %}"></script>
 </body>
 
 </html>

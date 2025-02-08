@@ -1,237 +1,231 @@
 <!DOCTYPE html>
 <html>
+  {% load static %}
 
-<head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-
-  <title>Guarder</title>
-
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
-
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
-</head>
-
-<body>
-  <div class="hero_area">
-    <!-- header section strats -->
-    <div class="hero_bg_box">
-      <div class="img-box">
-        <img src="images/hero-bg.jpg" alt="">
-      </div>
-    </div>
-
-    <header class="header_section">
-      <div class="header_top">
-        <div class="container-fluid">
-          <div class="contact_link-container">
-            <a href="" class="contact_link1">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <span>
-                Lorem ipsum dolor sit amet,
-              </span>
-            </a>
-            <a href="" class="contact_link2">
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              <span>
-                Call : +01 1234567890
-              </span>
-            </a>
-            <a href="" class="contact_link3">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              <span>
-                demo@gmail.com
-              </span>
-            </a>
-          </div>
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+  
+    <title>SafeZone</title>
+  
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+  
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+    <style></style>
+  </head>
+  
+  <body>
+    <div class="hero_area">
+      <!-- header section starts -->
+      <div class="hero_bg_box">
+        <div class="img-box">
+          <img src="{% static 'images/cbn1.jpg' %}" alt="">
         </div>
       </div>
-      <div class="header_bottom">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="index.html">
-              <span>
-                Guarder
-              </span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class=""></span>
-            </button>
-
-            <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
-              <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html"> About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="service.html"> Services </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="guard.html"> Guards </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact us</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
-    <!-- end header section -->
-    <!-- slider section -->
-    <section class=" slider_section ">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="detail-box">
-                    <h1>
-                      Your Saftey <br>
-                      <span>
-                        Our Responsibility
-                      </span>
-                    </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod magna aliqua. Ut enim ad minim veniam
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1"> Read more </a>
-                      <a href="" class="btn-2">Get A Quote</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item ">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="detail-box">
-                    <h1>
-                      Your Saftey <br>
-                      <span>
-                        Our Responsibility
-                      </span>
-                    </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod magna aliqua. Ut enim ad minim veniam
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1"> Read more </a>
-                      <a href="" class="btn-2">Get A Quote</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item ">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="detail-box">
-                    <h1>
-                      Your Saftey <br>
-                      <span>
-                        Our Responsibility
-                      </span>
-                    </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod magna aliqua. Ut enim ad minim veniam
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1"> Read more </a>
-                      <a href="" class="btn-2">Get A Quote</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container idicator_container">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-        </div>
-      </div>
-    </section>
-    <!-- end slider section -->
-  </div>
-
-  <!-- about section -->
-
-  <section class="about_section layout_padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 px-0">
-          <div class="img_container">
-            <div class="img-box">
-              <img src="images/about-img.jpg" alt="" />
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 px-0">
-          <div class="detail-box">
-            <div class="heading_container ">
-              <h2>
-                Who Are We?
-              </h2>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-              in reprehenderit in voluptate velit
-            </p>
-            <div class="btn-box">
-              <a href="">
-                Read More
+  
+      <header class="header_section">
+        <div class="header_top">
+          <div class="container-fluid">
+            <div class="contact_link-container">
+              <a href="" class="contact_link1">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  University of Ibadan
+                </span>
+              </a>
+              <a href="" class="contact_link2">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call : +01 1234567890
+                </span>
+              </a>
+              <a href="" class="contact_link3">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>
+                  Safezone@gmail.com
+                </span>
               </a>
             </div>
           </div>
         </div>
+        <div class="header_bottom">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+              <a class="navbar-brand" href="{% url 'home' %}">
+                <span> SafeZone </span>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class=""></span>
+              </button>
+  
+              <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}"> Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}"> Responders </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">About us</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>  
+    <!-- end header section -->
+<!-- slider section -->
+<section class="slider_section">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <!-- First Carousel Item -->
+      <div class="carousel-item active">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="detail-box">
+                <h1>
+                  Your Safety <br>
+                  <span>Our Responsibility</span>
+                </h1>
+                <p>
+                  SafeZone ensures that help gets to you fast by bridging the gap between students, safety, and a speedy response.
+                </p>
+                <div class="btn-box">
+                  <a href="read-more.html" class="btn-1">Read more</a>
+                  <a href="{% url 'save_incident' %}" class="btn-2">Report</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Carousel Item -->
+      <div class="carousel-item">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="detail-box">
+                <h1>
+                  Your Safety <br>
+                  <span>Our Responsibility</span>
+                </h1>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod magna aliqua. Ut enim ad minim veniam
+                </p>
+                <div class="btn-box">
+                  <a href="" class="btn-1">Read more</a>
+                  <a href="get-quote.html" class="btn-2">Get A Quote</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Third Carousel Item -->
+      <div class="carousel-item">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="detail-box">
+                <h1>
+                  Your Safety <br>
+                  <span>Our Responsibility</span>
+                </h1>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod magna aliqua. Ut enim ad minim veniam
+                </p>
+                <div class="btn-box">
+                  <a href="read-more.html" class="btn-1">Read more</a>
+                  <a href="get-quote.html" class="btn-2">Get A Quote</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- end about section -->
+    <!-- Carousel Indicators -->
+    <div class="container idicator_container">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+    </div>
+  </div>
+</section>
+<!-- end slider section -->
+ <!-- about section -->
 
+<section class="about_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 px-0">
+        <div class="img_container">
+          <div class="img-box">
+            <img src="{% static 'images/university of ibadan.jpg' %}" alt="University of Ibadan" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 px-0">
+        <div class="detail-box">
+          <div class="heading_container">
+            <h2>
+              Stay Safe with SafeZone!
+            </h2>
+          </div>
+          <p>
+            We are a real-time emergency response platform designed to alert the appropriate campus authorities whenever an emergency is reported. <br>
+            Whether it's a health issue, security threat, or safety hazard, SafeZone ensures that help gets to you fast by bridging the gap between students, safety, and a speedy response.
+          </p>
+          <div class="hashtag-container">
+            <p>
+              🔴⚡ #StaySafe #RapidResponse #SafeZone
+            </p>
+          </div>
+          <div class="btn-box">
+            <a href="#" class="custom-btn">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end about section -->
   <!-- service section -->
 
   <section class="service_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          Our services
+          Bringing you closer to the responders
         </h2>
       </div>
       <div class="row">
@@ -255,7 +249,7 @@
             </div>
             <div class="detail-box">
               <h6>
-                Home Security
+                Medical Emergencies
               </h6>
               <p>
                 Minima consequatur architecto eaque assumenda ipsam itaque quia eum in doloribus debitis impedit ut minus tenetur corrupti excepturi ullam.
@@ -335,7 +329,7 @@
             </div>
             <div class="detail-box">
               <h6>
-                Office Security
+                Security Emergencies
               </h6>
               <p>
                 Minima consequatur architecto eaque assumenda ipsam itaque quia eum in doloribus debitis impedit ut minus tenetur corrupti excepturi ullam.
@@ -409,7 +403,7 @@
             </div>
             <div class="detail-box">
               <h6>
-                Bodyguard
+                Fire Related Emergencies
               </h6>
               <p>
                 Minima consequatur architecto eaque assumenda ipsam itaque quia eum in doloribus debitis impedit ut minus tenetur corrupti excepturi ullam.
@@ -425,15 +419,12 @@
   </section>
 
   <!-- end service section -->
-
-
   <!-- client section -->
-
   <section class="client_section layout_padding">
-    <div class="container ">
+    <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          What is says our clients
+          Assurance From our Responders
         </h2>
       </div>
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -441,7 +432,25 @@
           <div class="carousel-item active">
             <div class="box">
               <div class="img-box">
-                <img src="images/client.png" alt="">
+                <img src="{% static 'myapp/images/client.png' %}" alt="">
+              </div>
+              <div class="detail-box">
+                <h4>
+                  Minim Veniam, (Head of Jaja, UI)
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                  ullamco laboris nisi ut aliquip
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="box">
+              <div class="img-box">
+                <img src="{% static 'myapp/images/client.png' %}" alt="">
               </div>
               <div class="detail-box">
                 <h4>
@@ -456,28 +465,10 @@
               </div>
             </div>
           </div>
-          <div class="carousel-item ">
+          <div class="carousel-item">
             <div class="box">
               <div class="img-box">
-                <img src="images/client.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h4>
-                  Minim Veniam
-                </h4>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco laboris nisi ut aliquip
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item ">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/client.png" alt="">
+                <img src="{% static 'myapp/images/client.png' %}" alt="">
               </div>
               <div class="detail-box">
                 <h4>
@@ -506,21 +497,19 @@
       </div>
     </div>
   </section>
-
   <!-- end client section -->
-
+  
   <!-- contact section -->
-
   <section class="contact_section layout_padding">
     <div class="contact_bg_box">
       <div class="img-box">
-        <img src="images/contact-bg.jpg" alt="">
+        <img src="{% static 'myapp/images/contact-bg.jpg' %}" alt="">
       </div>
     </div>
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          Get In touch
+          anonymously Report another emergency or Issue
         </h2>
       </div>
       <div class="">
@@ -531,9 +520,6 @@
                 <div>
                   <div>
                     <input type="text" placeholder="Full Name" />
-                  </div>
-                  <div>
-                    <input type="email" placeholder="Email " />
                   </div>
                   <div>
                     <input type="text" placeholder="Phone Number" />
@@ -554,79 +540,8 @@
       </div>
     </div>
   </section>
-
   <!-- end contact section -->
-
-  <!-- team section -->
-
-  <section class="team_section layout_padding">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Our Guards
-        </h2>
-        <p>
-          Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris
-          iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.
-        </p>
-      </div>
-      <div class="row">
-        <div class="col-md-4 col-sm-6 mx-auto ">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/t1.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                Martin Anderson
-              </h5>
-              <h6 class="">
-                supervisor
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 mx-auto ">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/t2.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                Denny Butler
-              </h5>
-              <h6 class="">
-                supervisor
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 mx-auto ">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/t3.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                Nathan Mcpherson
-              </h5>
-              <h6 class="">
-                supervisor
-              </h6>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="btn-box">
-        <a href="">
-          View All
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- end team section -->
-
+  
   <!-- info section -->
   <section class="info_section ">
     <div class="container">
@@ -729,12 +644,8 @@
       </div>
     </div>
   </section>
-
   <!-- end info_section -->
-
-
-
-
+  
   <!-- footer section -->
   <footer class="container-fluid footer_section">
     <p>
@@ -743,10 +654,12 @@
     </p>
   </footer>
   <!-- footer section -->
-
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="js/custom.js"></script>
-</body>
-
-</html>
+  
+  <!-- JS Files -->
+  <script src="{% static 'myapp/js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'myapp/js/bootstrap.js' %}"></script>
+  <script src="{% static 'myapp/js/custom.js' %}"></script>
+  
+  </body>
+  </html>
+  

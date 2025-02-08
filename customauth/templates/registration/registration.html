@@ -197,12 +197,18 @@
       <div>
         <div class="row">
           <div class="col-md-7 mx-auto">
-              {% if messages %}
-            <div class="alert alert-danger">
-              {% for message in messages %}
-                <p>{{ message }}</p>
-              {% endfor %}
-            </div>
+            {% if messages %}
+            {% for message in messages %}
+              {% if message.tags == "success" %}
+                <div class="alert alert-success">
+                  <p>{{ message }}</p>
+                </div>
+              {% else %}
+                <div class="alert alert-danger">
+                  <p>{{ message }}</p>
+                </div>
+              {% endif %}
+            {% endfor %}
           {% endif %}
           <form method="POST">
             {% csrf_token %}
@@ -211,8 +217,12 @@
               {{ form.email }}
             </div>
             <div class="form-group">
-              <label for="{{ form.password.id_for_label }}">Password</label>
-              {{ form.password }}
+              <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+              {{ form.phone_number }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.password1.id_for_label }}">Password</label>
+              {{ form.password1 }}
             </div>
             <div class="form-group">
               <label for="{{ form.password2.id_for_label }}">Confirm Password</label>

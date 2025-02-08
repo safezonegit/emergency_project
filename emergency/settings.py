@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # local apps
     'customauth.apps.CustomauthConfig',
+    'core.apps.CoreConfig',
     'user.apps.UserConfig',
     'responder.apps.ResponderConfig',
     'incident.apps.IncidentConfig',
@@ -151,5 +152,14 @@ TWILIO_ACCOUNT_SID = config('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = +15672467720
 
-AZURE_MAPS_SUBSCRIPTION_KEY = "6aWcN4MvjxP15u734n22nHPKqx57PjQ0KyWppJkMn9eiOoZvMkx3JQQJ99BAACYeBjFrTCE9AAAgAZMP4Nmb"
+GOOGLE_MAPS_API_KEY = "AIzaSyBtZQijM7JpE--1CM6SeTS3ylbZiFsn8to"
 SITE_ID=1
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+# Recommended content and serialization settings:
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'  # or your local timezone if preferred

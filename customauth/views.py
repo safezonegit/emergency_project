@@ -5,26 +5,27 @@ from django.contrib import messages
 
 
 # Create your views here.
-
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             new_user = form.save(commit=False)
-            new_user.set_password(form.cleaned_data['password'])
+            new_user.set_password(form.cleaned_data['password1'])
             new_user.save()
-            
-            return render(request,'registration/registration.html',{'form':form})
+            messages.success(request, "Registration successful! You can now log in.")
+            return redirect('login')  # Redirect to login page
     else:
         form = UserRegistrationForm()
-    return render(request,'registration/registration.html',{'form':form})
+    
+    return render(request, 'registration/registration.html', {'form': form})
+
 
 
 def login_view(request):
     if request.method == "POST":
-        username = request.POST["username"]
+        email = request.POST["email"]
         password = request.POST["password"]
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
             return redirect("home")  # Redirect to homepage
