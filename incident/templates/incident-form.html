@@ -25,6 +25,10 @@
   <link href="{% static 'css/style.css' %}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+  <!-- In your HTML head, include the Google Maps JavaScript API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtZQijM7JpE--1CM6SeTS3ylbZiFsn8to"></script>
+
   <style>
     .glowing-text {
   display: inline-block;
@@ -109,22 +113,24 @@
     font-weight: bold;}
 
     .sophisticated-button {
-  display: inline-block;
-  padding: 8px 20px;             /* Reduced padding for a smaller button */
+  display: inline-flex;          /* Use flexbox to align the spinner next to text */
+  align-items: center;           /* Vertically center the text and spinner */
+  padding: 6px 12px;             /* Smaller padding for a smaller button */
   font-size: 14px;               /* Smaller font size */
   font-weight: 600;
   text-align: center;
   color: #fff;
   background: linear-gradient(135deg, #d4af37, #aaa);
   border: none;
-  border-radius: 30px;           /* Adjust border-radius if needed */
+  border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.3s ease;
+  width: auto;                   /* Adjust width based on content */
 }
 
 .sophisticated-button:hover {
-  background: linear-gradient(135deg, #ffcc00, #aaa,#000);
+  background: linear-gradient(135deg, #ffcc00, #aaa, #000);
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
@@ -134,6 +140,29 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.spinner {
+  display: inline-block;
+  width: 20px;                   /* Smaller size for the spinner */
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #d4af37;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 8px;              /* Space between text and spinner */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#loading-spinner {
+  display: none;  /* Hide spinner initially */
+}
+
+.pac-container {
+            z-index: 10000; /* Ensure suggestions dropdown is above other elements */
+        }
 
 </style>
 </head>
@@ -242,46 +271,55 @@
                   {% endfor %}
                 {% endfor %}
               </div>
-            {% endif %}
+              {% endif %}
+
+
               <div class="form-group">
-                <label for="{{ form.user_input_location.id_for_label }}">User Location</label>
-                <input type="text" class="form-control" id="{{ form.user_input_location.id_for_label }}" name="{{ form.user_input_location.name }}" value="{{ form.user_input_location.value|default:'' }}" required />
-            </div>
-            
-            <div class="form-group">
-              <label for="{{ form.severity.id_for_label }}">Severity</label>
-              <select class="form-control" id="{{ form.severity.id_for_label }}" name="{{ form.severity.name }}" required>
-                  <option value="low" {% if form.severity.value == 'low' %}selected{% endif %}>Low</option>
-                  <option value="medium" {% if form.severity.value == 'medium' %}selected{% endif %}>Medium</option>
-                  <option value="high" {% if form.severity.value == 'high' %}selected{% endif %}>High</option>
-                  <option value="critical" {% if form.severity.value == 'critical' %}selected{% endif %}>Critical</option>
-              </select>
-          </div>
-          
-          <div class="form-group">
-              <label for="{{ form.category.id_for_label }}">Category</label>
-              <select class="form-control" id="{{ form.category.id_for_label }}" name="{{ form.category.name }}" required>
+                <label for="{{ form.category.id_for_label }}">Category</label>
+                <select class="form-control" id="{{ form.category.id_for_label }}" name="{{ form.category.name }}" required>
                   <option value="medical" {% if form.category.value == 'medical' %}selected{% endif %}>Medical</option>
                   <option value="fire" {% if form.category.value == 'fire' %}selected{% endif %}>Fire</option>
                   <option value="security" {% if form.category.value == 'security' %}selected{% endif %}>Security</option>
                   <option value="other" {% if form.category.value == 'other' %}selected{% endif %}>Other</option>
-              </select>
-          </div>   
-            
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="{{ form.severity.id_for_label }}">Severity</label>
+                <select class="form-control" id="{{ form.severity.id_for_label }}" name="{{ form.severity.name }}" required>
+                  <option value="low" {% if form.severity.value == 'low' %}selected{% endif %}>Low</option>
+                  <option value="medium" {% if form.severity.value == 'medium' %}selected{% endif %}>Medium</option>
+                  <option value="high" {% if form.severity.value == 'high' %}selected{% endif %}>High</option>
+                  <option value="critical" {% if form.severity.value == 'critical' %}selected{% endif %}>Critical</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="{{ form.user_input_location.id_for_label }}">User Location</label>
+                <input type="text" class="form-control" id="user_input_location" name="{{ form.user_input_location.name }}" value="{{ form.user_input_location.value|default:'' }}" required />
+              </div>
+              
+              <!-- Live Location Button and Spinner -->
+              <div class="form-group">
+                <button type="button" class="sophisticated-button" id="get-location">
+                  <span id="button-text">Use My Live Location</span>
+                  <div id="loading-spinner" class="spinner" style="display:none;"></div>
+                </button>
+
+                <div id="location-confirmation" class="confirmation-message" style="display:none;">
+                  <p>We need access to your location to provide better services. Would you like to proceed?</p>
+                  <button class="btn btn-success" onclick="confirmLocation()">Yes, Share Location</button>
+                  <button class="btn btn-danger" onclick="denyLocation()">No, I prefer not to</button>
+                </div>
+              </div>
+              <br>
+              <br>
               <!-- Hidden fields for latitude and longitude -->
               <input type="hidden" id="latitude" name="latitude">
               <input type="hidden" id="longitude" name="longitude">
-            
-              <!-- Button to get user's location -->
-              <div class="btn-box">
-                <button type="button" class="sophisticated-button" id="get-location">
-                  Use My Live Location
-                </button>
-              </div>
-              <div id="loading-spinner" style="display:none;">Fetching your location...</div>              
               
               <div class="btn-box">
-                <button type="submit" class="custom-btn">Register</button>
+                <button type="submit" class="custom-btn">Report</button>
               </div>
             </form>            
           </div>
@@ -410,6 +448,40 @@
   <script src="{% static 'js/bootstrap.js' %}"></script>
   <script src="{% static 'js/custom.js' %}"></script>
   <script src="{% static 'js/location.js' %}"></script>
+  <script>
+    function initAutocomplete() {
+        const input = document.getElementById('user_input_location');
+        const universityLocation = new google.maps.LatLng(7.4625, 3.8954);  // Coordinates for University of Ibadan
+
+        // Create an autocomplete object and restrict it to the University of Ibadan area
+        const autocomplete = new google.maps.places.Autocomplete(input, {
+            bounds: new google.maps.LatLngBounds(universityLocation), // Restrict to the University of Ibadan area
+            componentRestrictions: { country: 'NG' },  // Limit to Nigeria
+            types: ['geocode']  // Limit to addresses
+        });
+
+        autocomplete.addListener('place_changed', function () {
+            const place = autocomplete.getPlace();
+            if (!place.geometry) {
+                console.log("No details available for input: " + place.name);
+                return;
+            }
+
+            const latitude = place.geometry.location.lat();
+            const longitude = place.geometry.location.lng();
+
+            // Update hidden fields with latitude and longitude
+            document.getElementById('latitude').value = latitude;
+            document.getElementById('longitude').value = longitude;
+        });
+    }
+
+    // Ensure autocomplete function runs once the page loads
+    window.onload = function() {
+        initAutocomplete();
+    };
+</script>
+
 </body>
 
 </html>

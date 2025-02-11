@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #'jazzmin', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -163,3 +164,11 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'  # or your local timezone if preferred
+
+
+JAZZMIN_SETTINGS = {
+    "site_title": "SafeZone",         # Title on the browser tab
+    "site_header": "SafeZone Admin Dashboard",       # Header at the top of the admin interface
+    #"site_brand": "MyBrand",                  
+    "welcome_sign": "Welcome to My Admin!",    # Welcome text on the login screen
+}
