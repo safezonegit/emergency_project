@@ -1,250 +1,319 @@
 <!DOCTYPE html>
-<html>
-{%load static%}
-<head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="SafeZone, Campus Safety, Incident Reporting" />
-  <meta name="description" content="SafeZone is a real-time incident reporting platform for campus safety and emergency management." />
-  <meta name="author" content="SafeZone Team" />
-  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+<html lang="en">
+  {% load static %}
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="SafeZone, Campus Safety, Incident Reporting" />
+    <meta name="description" content="SafeZone is a real-time incident reporting platform for campus safety and emergency management." />
+    <meta name="author" content="SafeZone Team" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
 
-  <title>SafeZone</title>
+    <title>SafeZone - About Us</title>
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
 
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+    <!-- Extra CSS for Enhanced Styling -->
+    <style>
+      /* Global Styles */
+      body {
+        font-family: 'Open Sans', sans-serif;
+        background: #f7f9fc;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        text-decoration: none;
+      }
 
-  <!-- Custom styles for this template -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+      /* Hero Area */
+      .hero_area {
+        position: relative;
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{% static 'images/hero-bg.jpg' %}") center/cover no-repeat;
+      }
+      .hero_area .header_section {
+        background: transparent;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+      .hero_area .header_section .navbar-brand span {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #fff;
+      }
+      .hero_area .header_section .nav-link {
+        color: #fff !important;
+        font-size: 1rem;
+        transition: color 0.3s;
+      }
+      .hero_area .header_section .nav-link:hover {
+        color: #ffcc00 !important;
+      }
 
-</head>
+      /* About Section */
+      .about_safezone_section {
+        padding: 80px 15px;
+        background: #fff;
+        text-align: center;
+      }
+      .about_safezone_section .heading_container h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        color: #007bff;
+      }
+      .about_safezone_section p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin: 0 auto 20px;
+        max-width: 800px;
+        color: #555;
+      }
 
-<body class="sub_page">
-  <div class="hero_area">
-    <!-- header section starts -->
-    <div class="hero_bg_box">
-      <div class="img-box">
-        <img src="{% static 'images/hero-bg.jpg' %}" alt="Hero Image">
-      </div>
-    </div>
+      /* How-to-Use Section */
+      .how_to_use_section {
+        padding: 80px 15px;
+        background: #f1f8ff;
+      }
+      .how_to_use_section .heading_container h2 {
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+        color: #007bff;
+      }
+      .how_to_use_section .step_box {
+        background: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        height: 100%;
+      }
+      .how_to_use_section .step_box:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      }
+      .how_to_use_section .step_box h5 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: #333;
+      }
+      .how_to_use_section .step_box p {
+        font-size: 1rem;
+        color: #666;
+      }
 
-    <header class="header_section">
-      <div class="header_top">
-        <div class="container-fluid">
-          <div class="contact_link-container">
-            <a href="" class="contact_link1">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <span>University Of Ibadan</span>
-            </a>
-            <a href="" class="contact_link2">
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              <span>Call : +01 1234567890</span>
-            </a>
-            <a href="" class="contact_link3">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              <span>mail@safezone.com.ng</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="header_bottom">
-        <div class="container-fluid">
+      /* Info Section */
+      .info_section {
+        background: #343a40;
+        color: #fff;
+        padding: 60px 15px;
+      }
+      .info_section h5 {
+        font-size: 1.25rem;
+        margin-bottom: 20px;
+        color: #ffcc00;
+      }
+      .info_section a {
+        color: #fff;
+        transition: color 0.3s;
+      }
+      .info_section a:hover {
+        color: #ffcc00;
+      }
+      .info_section ul {
+        list-style: none;
+        padding-left: 0;
+      }
+      .info_section ul li {
+        margin-bottom: 10px;
+      }
+
+      /* Footer Section */
+      .footer_section {
+        background: #222;
+        color: #ccc;
+        padding: 20px 15px;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+      .footer_section a {
+        color: #ffcc00;
+      }
+      .footer_section a:hover {
+        text-decoration: underline;
+      }
+      .social_box a {
+        margin-right: 10px;
+        font-size: 1.2rem;
+        display: inline-block;
+        color: #fff;
+        transition: color 0.3s;
+      }
+      .social_box a:hover {
+        color: #ffcc00;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Hero Area -->
+    <div class="hero_area">
+      <!-- Header Section -->
+      <header class="header_section">
+        <div class="container">
           <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{% url 'home' %}">
               <span>SafeZone</span>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class=""></span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login' %}"> Login</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'responders' %}"> Responders </a>
-                </li>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'responders' %}">Responders</a></li>
               </ul>
             </div>
           </nav>
         </div>
-      </div>
-    </header>
-    <!-- end header section -->
-  </div>
+      </header>
+    </div>
 
-  <!-- About SafeZone section -->
-  <section class="about_safezone_section layout_padding">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          About SafeZone
-        </h2>
+    <!-- About SafeZone Section -->
+    <section class="about_safezone_section">
+      <div class="container">
+        <div class="heading_container heading_center">
+          <h2>About SafeZone</h2>
+        </div>
         <p>
-            SafeZone serves as a centralized platform that integrates the university's medical, security, and fire safety services. 
-            In the event of an incident, users can report the issue through the SafeZone app, which then alerts the appropriate responders—medical, security, or fire services—based on the nature of the incident. This integration ensures a coordinated and efficient response, leveraging the existing infrastructure and expertise of the university's departments.
-            By connecting users directly with the university's established services, SafeZone enhances the overall safety and well-being of the campus community, providing a seamless and effective response to emergencies.
+          SafeZone serves as a centralized platform that integrates the university's medical, security, and fire safety services.
+          In the event of an incident, users can report the issue through the SafeZone app, which then alerts the appropriate responders—
+          medical, security, or fire services—based on the nature of the incident. This integration ensures a coordinated and efficient
+          response, leveraging the existing infrastructure and expertise of the university's departments.
+        </p>
+        <p>
+          By connecting users directly with the university's established services, SafeZone enhances the overall safety and well-being of the
+          campus community, providing a seamless and effective response to emergencies.
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- How to use SafeZone -->
-  <section class="how_to_use_section layout_padding">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          How to Use SafeZone
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-4 col-sm-6">
-          <div class="step_box">
-            <h5>Step 1: Sign Up</h5>
-            <p>Register on the platform by providing your details to access all features.</p>
-          </div>
+    <!-- How to Use SafeZone Section -->
+    <section class="how_to_use_section">
+      <div class="container">
+        <div class="heading_container heading_center">
+          <h2>How to Use SafeZone</h2>
         </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="step_box">
-            <h5>Step 2: Report an Incident</h5>
-            <p>Once registered, you can report any emergency or safety incident by filling out a form with necessary details.</p>
+        <div class="row">
+          <div class="col-md-4 col-sm-6 mb-4">
+            <div class="step_box text-center">
+              <h5>Step 1: Sign Up</h5>
+              <p>Register on the platform by providing your details to access all features.</p>
+            </div>
           </div>
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="step_box">
-            <h5>Step 3: Receive Assistance</h5>
-            <p>SafeZone will notify the nearest responders and emergency contacts, ensuring swift intervention in your location.</p>
+          <div class="col-md-4 col-sm-6 mb-4">
+            <div class="step_box text-center">
+              <h5>Step 2: Report an Incident</h5>
+              <p>Once registered, report any emergency by filling out a form with the necessary details.</p>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- info section -->
-  <section class="info_section ">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="info_logo">
-            <a class="navbar-brand" href="index.html">
-              <span>
-                Safezone
-              </span>
-            </a>
-            <p>
-              dolor sit amet, consectetur magna aliqua. Ut enim ad minim veniam, quisdotempor incididunt r
-            </p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="info_links">
-            <h5>
-              Useful Link
-            </h5>
-            <ul>
-              <li>
-                <a href="">
-                  dolor sit amet, consectetur
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  magna aliqua. Ut enim ad
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  minim veniam,
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  quisdotempor incididunt r
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="info_info">
-            <h5>
-              Contact Us
-            </h5>
-          </div>
-          <div class="info_contact">
-            <a href="" class="">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <span>
-                Lorem ipsum dolor sit amet,
-              </span>
-            </a>
-            <a href="" class="">
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              <span>
-                Call : +01 1234567890
-              </span>
-            </a>
-            <a href="" class="">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              <span>
-                demo@gmail.com
-              </span>
-            </a>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="info_form ">
-            <h5>
-              Newsletter
-            </h5>
-            <form action="#">
-              <input type="email" placeholder="Enter your email">
-              <button>
-                Subscribe
-              </button>
-            </form>
-            <div class="social_box">
-              <a href="">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-youtube" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </a>
+          <div class="col-md-4 col-sm-6 mb-4">
+            <div class="step_box text-center">
+              <h5>Step 3: Receive Assistance</h5>
+              <p>SafeZone notifies the nearest responders and emergency contacts for swift intervention.</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- end info_section -->
-  
-  <!-- footer section -->
-  <footer class="container-fluid footer_section">
-    <p>
-      &copy; <span id="currentYear"></span> All Rights Reserved. Design by
-      <a href="https://html.design/">Free Html Templates</a>
-    </p>
-  </footer>
-  <!-- footer section -->
+    </section>
 
-</body>
+    <!-- Info Section -->
+    <section class="info_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 mb-4">
+            <div class="info_logo">
+              <a class="navbar-brand" href="{% url 'home' %}">
+                <span>SafeZone</span>
+              </a>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat justo at commodo tincidunt.</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="info_links">
+              <h5>Useful Links</h5>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Our Services</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms &amp; Conditions</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="info_info">
+              <h5>Contact Us</h5>
+              <p><i class="fa fa-map-marker"></i> 1234 Street Name, City, Country</p>
+              <p><i class="fa fa-phone"></i> +01 1234567890</p>
+              <p><i class="fa fa-envelope"></i> demo@gmail.com</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="info_form">
+              <h5>Newsletter</h5>
+              <form action="#">
+                <div class="input-group">
+                  <input type="email" class="form-control" placeholder="Enter your email" aria-label="Email" />
+                  <div class="input-group-append">
+                    <button class="btn btn-warning" type="submit">Subscribe</button>
+                  </div>
+                </div>
+              </form>
+              <div class="social_box mt-3">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Footer Section -->
+    <footer class="footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="currentYear"></span> All Rights Reserved. Design by
+          <a href="https://html.design/">Free Html Templates</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+      // Set current year in footer
+      document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>

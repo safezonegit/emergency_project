@@ -16,6 +16,9 @@ celery = "*"
 redis = "*"
 azure-maps-search = "*"
 azure-maps-route = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+whitenoise = "*"
 
 [dev-packages]
 
