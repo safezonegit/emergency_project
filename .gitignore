@@ -17,10 +17,10 @@ db.sqlite3
 /.env
 
 # Ignore static files (if served by a CDN or not version-controlled)
-#/staticfiles/
+/staticfiles/
 
 # Ignore media files (user-uploaded content)
-#/media/
+/media/
 
 # Ignore IDE or editor specific files
 /.vscode/
