@@ -244,69 +244,113 @@
       </div>
     </section>
 
-    <!-- Info Section -->
-    <section class="info_section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3 mb-4">
-            <div class="info_logo">
-              <a class="navbar-brand" href="{% url 'home' %}">
-                <span>SafeZone</span>
-              </a>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat justo at commodo tincidunt.</p>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="info_links">
-              <h5>Useful Links</h5>
-              <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Our Services</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms &amp; Conditions</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="info_info">
-              <h5>Contact Us</h5>
-              <p><i class="fa fa-map-marker"></i> 1234 Street Name, City, Country</p>
-              <p><i class="fa fa-phone"></i> +01 1234567890</p>
-              <p><i class="fa fa-envelope"></i> demo@gmail.com</p>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="info_form">
-              <h5>Newsletter</h5>
-              <form action="#">
-                <div class="input-group">
-                  <input type="email" class="form-control" placeholder="Enter your email" aria-label="Email" />
-                  <div class="input-group-append">
-                    <button class="btn btn-warning" type="submit">Subscribe</button>
-                  </div>
-                </div>
-              </form>
-              <div class="social_box mt-3">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-youtube"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-              </div>
-            </div>
+    <!-- info section -->
+<section class="info_section">
+  <div class="container">
+    <div class="row">
+      <!-- SafeZone Logo & Description -->
+      <div class="col-md-3">
+        <div class="info_logo">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              SafeZone
+            </span>
+          </a>
+          <p>
+            SafeZone is your reliable platform for real-time incident reporting and campus safety, connecting you quickly with emergency responders.
+          </p>
+        </div>
+      </div>
+      <!-- Useful Links -->
+      <div class="col-md-3">
+        <div class="info_links">
+          <h5>
+            Useful Links
+          </h5>
+          <ul>
+            <li>
+              <a href="#">About SafeZone</a>
+            </li>
+            <li>
+              <a href="#">Our Services</a>
+            </li>
+            <li>
+              <a href="#">Emergency Contacts</a>
+            </li>
+            <li>
+              <a href="#">FAQs</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Contact Information -->
+      <div class="col-md-3">
+        <div class="info_info">
+          <h5>
+            Contact Us
+          </h5>
+        </div>
+        <div class="info_contact">
+          <a href="#">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <span>
+              University of Ibadan, Nigeria
+            </span>
+          </a>
+          <a href="#">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <span>
+              Call : +234 803 123 4567
+            </span>
+          </a>
+          <a href="#">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <span>
+              info@safezone.ng
+            </span>
+          </a>
+        </div>
+      </div>
+      <!-- Newsletter & Social Media -->
+      <div class="col-md-3">
+        <div class="info_form">
+          <h5>
+            Newsletter
+          </h5>
+          <form action="#">
+            <input type="email" placeholder="Enter your email">
+            <button>
+              Subscribe
+            </button>
+          </form>
+          <div class="social_box">
+            <a href="#">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-youtube" aria-hidden="true"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-instagram" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+<!-- end info_section -->
 
-    <!-- Footer Section -->
-    <footer class="footer_section">
-      <div class="container">
-        <p>
-          &copy; <span id="currentYear"></span> All Rights Reserved. Design by
-          <a href="https://html.design/">Free Html Templates</a>
-        </p>
-      </div>
-    </footer>
+<!-- footer section -->
+<footer class="container-fluid footer_section">
+  <p>
+    &copy; <span id="currentYear"></span> All Rights Reserved. Powered by
+    <a href="https://safezone.ng">SafeZone</a>
+  </p>
+</footer>
 
     <!-- Bootstrap JS and Dependencies -->
     <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
