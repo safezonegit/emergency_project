@@ -204,6 +204,10 @@
               {% endif %}
             {% endfor %}
             {% endif %}
+            <p class="login-link">
+              Don't have an account yet?
+              <a href="{% url 'register' %}" class="login-btn">Register</a>
+            </p>
             <form method="POST">
                 {% csrf_token %}
                 <div class="form-group">
