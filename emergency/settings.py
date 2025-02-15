@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    #'jazzmin', 
+    'jazzmin', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -172,4 +172,5 @@ JAZZMIN_SETTINGS = {
     "site_header": "SafeZone Admin Dashboard",       # Header at the top of the admin interface
     #"site_brand": "MyBrand",                  
     "welcome_sign": "Welcome to My Admin!",    # Welcome text on the login screen
+    "show_ui_builder": True,  # Enables UI customizer in admin
 }

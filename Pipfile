@@ -20,6 +20,7 @@ gunicorn = "*"
 psycopg2-binary = "*"
 whitenoise = "*"
 dj-database-url = "*"
+django-jazzmin = "*"
 
 [dev-packages]
 
