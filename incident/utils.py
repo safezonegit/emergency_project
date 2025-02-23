@@ -107,12 +107,16 @@ def send_incident_notification(incident_id):
 
     # Construct the SMS message
     message = (
-        f"Incident Alert!\n"
-        f"Category: {incident.category}\n"
-        f"Severity: {incident.severity}\n"
-        f"Location: {incident.user_input_location or incident.live_location}\n"
-        f"Reported By: {incident.user.username}"
-    )
+    "🚨 URGENT CAMPUS EMERGENCY ALERT! 🚨\n\n"
+    "🔥 Incident Details:\n"
+    f"• Category: {incident.category.upper()}\n"
+    f"• Severity: {incident.severity.upper()}\n"
+    f"• Location: {incident.user_input_location or incident.live_location}\n"
+    f"Reported By: {incident.user.first_name} {incident.user.last_name}\n"
+
+    "⚡️ IMMEDIATE ACTION REQUIRED! Please mobilize and respond ASAP.\n\n"
+    "— SafeZone"
+)
 
     # Termii API configuration from Django settings
     termii_api_url = getattr(settings, "TERMII_API_URL", "https://v3.api.termii.com/api/sms/send")

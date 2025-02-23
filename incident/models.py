@@ -25,9 +25,8 @@ class Incident(models.Model):
             ('medical', 'Medical'),
             ('fire', 'Fire'),
             ('security', 'Security'),
-            ('other', 'Other'),
         ],
-        default='other'
+        default='medical'
     )
     date_reported = models.DateTimeField(auto_now_add=True)  # When the incident was reported
     incident_date = models.DateTimeField(null=True,blank=True)  # When the incident occurred
@@ -37,3 +36,6 @@ class Incident(models.Model):
         choices=[('open', 'Open'), ('in_progress', 'In Progress'), ('closed', 'Closed')],
         default='open'
     )
+
+    def __str__(self):
+        return f"{self.user.first_name}{self.user.last_name}||{self.category}||{self.severity}"
