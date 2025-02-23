@@ -28,6 +28,8 @@
 
   <!-- In your HTML head, include the Google Maps JavaScript API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtZQijM7JpE--1CM6SeTS3ylbZiFsn8to"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtZQijM7JpE--1CM6SeTS3ylbZiFsn8to&libraries=places"></script>
+
 
   <style>
     .glowing-text {
@@ -472,37 +474,36 @@
   <script src="{% static 'js/location.js' %}"></script>
   <script>
     function initAutocomplete() {
-        const input = document.getElementById('user_input_location');
-        const universityLocation = new google.maps.LatLng(7.4625, 3.8954);  // Coordinates for University of Ibadan
+  var input = document.getElementById('user_input_location');
 
-        // Create an autocomplete object and restrict it to the University of Ibadan area
-        const autocomplete = new google.maps.places.Autocomplete(input, {
-            bounds: new google.maps.LatLngBounds(universityLocation), // Restrict to the University of Ibadan area
-            componentRestrictions: { country: 'NG' },  // Limit to Nigeria
-            types: ['geocode']  // Limit to addresses
-        });
+  // Define a broader bounding box for the University of Ibadan area
+  var uiBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(7.430, 3.880),  // Southwest corner
+    new google.maps.LatLng(7.460, 3.920)   // Northeast corner
+  );
 
-        autocomplete.addListener('place_changed', function () {
-            const place = autocomplete.getPlace();
-            if (!place.geometry) {
-                console.log("No details available for input: " + place.name);
-                return;
-            }
+  var options = {
+    types: ['geocode'],
+    bounds: uiBounds,
+    // Remove strictBounds to allow suggestions slightly outside the bounds
+    componentRestrictions: { country: 'ng' }
+  };
 
-            const latitude = place.geometry.location.lat();
-            const longitude = place.geometry.location.lng();
+  var autocomplete = new google.maps.places.Autocomplete(input, options);
 
-            // Update hidden fields with latitude and longitude
-            document.getElementById('latitude').value = latitude;
-            document.getElementById('longitude').value = longitude;
-        });
+  autocomplete.addListener('place_changed', function() {
+    var place = autocomplete.getPlace();
+    if (place.geometry) {
+      document.getElementById('latitude').value = place.geometry.location.lat();
+      document.getElementById('longitude').value = place.geometry.location.lng();
     }
+  });
+}
 
-    // Ensure autocomplete function runs once the page loads
-    window.onload = function() {
-        initAutocomplete();
-    };
-</script>
+google.maps.event.addDomListener(window, 'load', initAutocomplete);
+
+  </script>
+  
 
 </body>
 
