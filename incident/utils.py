@@ -107,11 +107,11 @@ def send_incident_notification(incident_id):
 
     # Construct the SMS message
     message = (
-    "URGENT CAMPUS EMERGENCY ALERT!\n\n"
+    "URGENT CAMPUS EMERGENCY ALERT!\n"
     "Incident Details:\n\n"
-    f" Category: {incident.category.upper()}\n"
-    f" Severity: {incident.severity.upper()}\n"
-    f" Location: {incident.user_input_location or incident.live_location}\n"
+    f"Category: {incident.category.upper()}\n"
+    f"Severity: {incident.severity.upper()}\n"
+    f"Location: {incident.user_input_location or incident.live_location}\n"
     f"Reported By: {incident.user.phone_number}\n\n"
 
     " IMMEDIATE ACTION REQUIRED! Please mobilize and respond ASAP.\n\n"
