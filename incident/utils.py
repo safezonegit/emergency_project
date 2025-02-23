@@ -4,7 +4,8 @@ from django.conf import settings
 from .models import Incident
 from responder.models import *
 from twilio.rest import Client
-
+import logging
+import requests
 
 
 
@@ -21,11 +22,11 @@ def is_within_university(lat, lon):
     by calculating distance from UI's center using Google Maps Distance Matrix API.
     """
     try:
-        # Use Google Maps Distance Matrix API to calculate the distance
+        # Use 'walking' mode instead of 'driving'
         result = gmaps.distance_matrix(
             origins=[(lat, lon)],
             destinations=[(UI_LAT, UI_LON)],
-            mode="driving"  # You can also use 'walking', 'bicycling', or 'transit'
+            mode="walking"  # Change to 'walking'
         )
         
         # Extract distance in meters
@@ -36,6 +37,7 @@ def is_within_university(lat, lon):
     except Exception as e:
         print(f"Google Maps Distance Matrix API Error: {e}")
         return False
+
 
 def geocode(query, value):
     """
@@ -82,38 +84,58 @@ def format_phone_number(phone_number):
     return phone_number
 
 
-
 def send_incident_notification(incident_id):
+    """
+    Sends an SMS notification about an incident to all relevant responders via Termii.
+    """
     try:
         incident = Incident.objects.get(incident_id=incident_id)
-        responders = []
-
-        # Determine responders based on category
-        if incident.category == 'medical':
-            responders = MedicalResponder.objects.all()
-        elif incident.category == 'fire':
-            responders = FireHazardResponder.objects.all()
-        elif incident.category == 'security':
-            responders = SecurityResponder.objects.all()
-
-        client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-
-        for responder in responders:
-            message = (
-                f"Incident Alert!\n"
-                f"Category: {incident.category}\n"
-                f"Severity: {incident.severity}\n"
-                f"Location: {incident.user_input_location or incident.live_location}\n"
-                f"Reported By: {incident.user.username}"
-            )
-            try:
-                formatted_phone = format_phone_number(responder.sms_contact) 
-                client.messages.create(
-                    to=formatted_phone,
-                    from_=settings.TWILIO_PHONE_NUMBER,
-                    body=message
-                )
-            except Exception as e:
-                print(f"Failed to notify responder {responder.name}: {e}")
     except Incident.DoesNotExist:
-        print("Incident not found.")
+        print("Incident with id %s not found.", incident_id)
+        return
+
+    # Select responders based on incident category
+    if incident.category == 'medical':
+        responders = MedicalResponder.objects.all()
+    elif incident.category == 'fire':
+        responders = FireHazardResponder.objects.all()
+    elif incident.category == 'security':
+        responders = SecurityResponder.objects.all()
+    else:
+        print("Unknown incident category: %s", incident.category)
+        return
+
+    # Construct the SMS message
+    message = (
+        f"Incident Alert!\n"
+        f"Category: {incident.category}\n"
+        f"Severity: {incident.severity}\n"
+        f"Location: {incident.user_input_location or incident.live_location}\n"
+        f"Reported By: {incident.user.username}"
+    )
+
+    # Termii API configuration from Django settings
+    termii_api_url = getattr(settings, "TERMII_API_URL", "https://v3.api.termii.com/api/sms/send")
+    termii_api_key = settings.TERMII_API_KEY
+    termii_sender_id = settings.TERMII_SENDER_ID
+
+    # Send notification to each responder
+    for responder in responders:
+        payload = {
+            "api_key": termii_api_key,
+            "to": format_phone_number(responder.sms_contact),  
+            "from": termii_sender_id,
+            "sms": message,
+            "type": "plain",
+            "channel": "generic"
+        }
+        try:
+            response = requests.post(termii_api_url, json=payload, timeout=10)
+            response.raise_for_status()
+        except requests.HTTPError as exc:
+            print("Response Status:", response.status_code)
+            print("Response Body:", response.text)
+            print("Failed to notify responder %s: %s", responder.name, exc)
+        except Exception as exc:
+            print("Unexpected error notifying responder %s: %s", responder.name, exc)
+

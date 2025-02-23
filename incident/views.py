@@ -2,9 +2,10 @@ import googlemaps
 from .models import Incident
 from django.shortcuts import render, redirect
 from .forms import IncidentForm
-from .utils import is_within_university, geocode, reverse_geocode,send_incident_notification
+from .utils import is_within_university, geocode, reverse_geocode, send_incident_notification
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+
 
 # Initialize Google Maps client with your API key
 gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
@@ -20,8 +21,12 @@ def save_incident(request):
             # Validate user input location
             if user_input_location:
                 try:
-                    # Geocode the user input location with Google Maps
-                    geocode_result = gmaps.geocode(user_input_location)
+                    # Replace spaces with '+' for proper formatting in the query
+                    formatted_location = user_input_location.replace(" ", "+")
+
+                    # Geocode the formatted location with Google Maps
+                    geocode_result = gmaps.geocode(formatted_location)
+                    
                     if geocode_result:
                         input_lat = geocode_result[0]['geometry']['location']['lat']
                         input_lon = geocode_result[0]['geometry']['location']['lng']
@@ -43,7 +48,7 @@ def save_incident(request):
                 return render(request, 'incident-form.html', {'form': form})
 
             # Save incident if valid
-            incident = form.save(user=request.user, commit=False)
+            incident = form.save(user=request.user,commit=False)
             incident.user = user
             incident.save()
 
@@ -56,7 +61,6 @@ def save_incident(request):
 
     return render(request, 'incident-form.html', {'form': form})
 
-
 @login_required(login_url='login')
 def incident_report_success(request):
-    return render(request,'success.html')
+    return render(request, 'success.html')

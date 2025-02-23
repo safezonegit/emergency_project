@@ -217,19 +217,19 @@
             <a href="" class="contact_link1">
               <i class="fa fa-map-marker" aria-hidden="true"></i>
               <span>
-                Lorem ipsum dolor sit amet,
+                University of Ibadan
               </span>
             </a>
             <a href="" class="contact_link2">
               <i class="fa fa-phone" aria-hidden="true"></i>
               <span>
-                Call : +01 1234567890
+                +234 8141282955
               </span>
             </a>
             <a href="" class="contact_link3">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <span>
-                demo@gmail.com
+                safezone@outlook.com
               </span>
             </a>
           </div>
@@ -238,7 +238,7 @@
       <div class="header_bottom">
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{% url 'home' %}">
               <span>
                 SafeZone
               </span>
@@ -357,11 +357,11 @@
   </section>
 
   <!-- end about section -->
-
-  <!-- info section -->
-  <section class="info_section ">
+   <!-- info section -->
+   <section class="info_section">
     <div class="container">
       <div class="row">
+        <!-- SafeZone Logo & Description -->
         <div class="col-md-3">
           <div class="info_logo">
             <a class="navbar-brand" href="index.html">
@@ -370,39 +370,33 @@
               </span>
             </a>
             <p>
-              dolor sit amet, consectetur magna aliqua. Ut enim ad minim veniam, quisdotempor incididunt r
+              SafeZone is your reliable platform for real-time incident reporting and campus safety, connecting you quickly with emergency responders.
             </p>
           </div>
         </div>
+        <!-- Useful Links -->
         <div class="col-md-3">
           <div class="info_links">
             <h5>
-              Useful Link
+              Useful Links
             </h5>
             <ul>
               <li>
-                <a href="">
-                  dolor sit amet, consectetur
-                </a>
+                <a href="#">About SafeZone</a>
               </li>
               <li>
-                <a href="">
-                  magna aliqua. Ut enim ad
-                </a>
+                <a href="#">Our Services</a>
               </li>
               <li>
-                <a href="">
-                  minim veniam,
-                </a>
+                <a href="#">Emergency Contacts</a>
               </li>
               <li>
-                <a href="">
-                  quisdotempor incididunt r
-                </a>
+                <a href="#">FAQs</a>
               </li>
             </ul>
           </div>
         </div>
+        <!-- Contact Information -->
         <div class="col-md-3">
           <div class="info_info">
             <h5>
@@ -410,28 +404,29 @@
             </h5>
           </div>
           <div class="info_contact">
-            <a href="" class="">
+            <a href="#">
               <i class="fa fa-map-marker" aria-hidden="true"></i>
               <span>
-                Lorem ipsum dolor sit amet,
+                University of Ibadan, Nigeria
               </span>
             </a>
-            <a href="" class="">
+            <a href="#">
               <i class="fa fa-phone" aria-hidden="true"></i>
               <span>
-                Call : +01 1234567890
+                Call : +234 803 123 4567
               </span>
             </a>
-            <a href="" class="">
+            <a href="#">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <span>
-                demo@gmail.com
+                info@safezone.ng
               </span>
             </a>
           </div>
         </div>
+        <!-- Newsletter & Social Media -->
         <div class="col-md-3">
-          <div class="info_form ">
+          <div class="info_form">
             <h5>
               Newsletter
             </h5>
@@ -442,16 +437,16 @@
               </button>
             </form>
             <div class="social_box">
-              <a href="">
+              <a href="#">
                 <i class="fa fa-facebook" aria-hidden="true"></i>
               </a>
-              <a href="">
+              <a href="#">
                 <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
-              <a href="">
+              <a href="#">
                 <i class="fa fa-youtube" aria-hidden="true"></i>
               </a>
-              <a href="">
+              <a href="#">
                 <i class="fa fa-instagram" aria-hidden="true"></i>
               </a>
             </div>
@@ -460,17 +455,16 @@
       </div>
     </div>
   </section>
-
   <!-- end info_section -->
-
-  <!-- footer section -->
+  
+    <!-- footer section -->
   <footer class="container-fluid footer_section">
     <p>
-      &copy; <span id="currentYear"></span> All Rights Reserved. Design by
-      <a href="https://html.design/">Free Html Templates</a>
+      &copy; <span id="currentYear"></span> All Rights Reserved. Powered by
+      <a href="https://safezone.ng">SafeZone</a>
     </p>
   </footer>
-  <!-- footer section -->
+    <!-- footer section -->
 
   <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
   <script src="{% static 'js/bootstrap.js' %}"></script>
