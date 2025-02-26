@@ -452,7 +452,7 @@
   <section class="contact_section layout_padding">
     <div class="contact_bg_box">
       <div class="img-box">
-        <img src="{% static 'myapp/images/contact-bg.jpg' %}" alt="">
+        <img src="{% static 'images/contact-bg.jpg' %}" alt="">
       </div>
     </div>
     <div class="container">
@@ -465,23 +465,24 @@
       <div class="">
         <div class="row">
           <div class="col-md-7 mx-auto">
-            <form action="#">
+            <form method="post" action="{% url 'anonymous_response_create' %}">
+              {% csrf_token %}
               <div class="contact_form-container">
-                <div>
                   <div>
-                    <input type="text" placeholder="Phone Number - (optional)" />
+                      <div>
+                          <input type="text" name="phone_number" placeholder="Phone Number - (optional)" />
+                      </div>
+                      <div class="">
+                          <input type="text" name="message" placeholder="Message" class="message_input" />
+                      </div>
+                      <div class="btn-box ">
+                          <button type="submit">
+                              Report
+                          </button>
+                      </div>
                   </div>
-                  <div class="">
-                    <input type="text" placeholder="Message" class="message_input" />
-                  </div>
-                  <div class="btn-box ">
-                    <button type="submit">
-                      Report
-                    </button>
-                  </div>
-                </div>
               </div>
-            </form>
+          </form>          
           </div>
         </div>
       </div>
